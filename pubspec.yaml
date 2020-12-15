@@ -24,6 +24,8 @@ dependencies:
   flutter:
     sdk: flutter
   intl: ^0.16.1
+  flutter_sms: ^2.1.1
+  flutter_email_sender: ^4.0.0
 
 
   # The following adds the Cupertino Icons font to your application.

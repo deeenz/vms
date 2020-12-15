@@ -19,7 +19,6 @@ class _Login extends State<Login> {
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
-    final orientation = MediaQuery.of(context).orientation;
 
     return GestureDetector(
       onTap: () {
@@ -35,17 +34,12 @@ class _Login extends State<Login> {
                   alignment: Alignment.center,
                   width: screenWidth,
                   child: Text(
-                    "VISITOR MANAGEMENT SYSTEM",
+                    "VMS",
                     style: TextStyle(color: Colors.white, fontSize: 20),
                   ),
-                  height: (orientation == Orientation.portrait)
-                      ? screenHeight * .2
-                      : 100),
+                  height: screenHeight * .2),
               Container(
-                width: screenWidth,
-                height: (orientation == Orientation.portrait)
-                    ? screenHeight - screenHeight * .2
-                    : screenHeight - 100,
+                height: screenHeight * .8,
                 child: Material(
                   color: Colors.white,
                   borderRadius: BorderRadius.only(
@@ -54,27 +48,14 @@ class _Login extends State<Login> {
                   ),
                   child: Column(
                     children: [
-                      Container(
-                        alignment: Alignment.center,
-                        margin: EdgeInsets.only(top: 20),
-                        child: Text(
-                          "Login",
-                          style: TextStyle(
-                              fontSize: 18, fontWeight: FontWeight.normal),
-                        ),
-                      ),
                       Form(
                         key: loginFormKey,
                         child: Column(
                           children: [
                             Container(
-                              alignment: Alignment.center,
-                              padding: EdgeInsets.all(10),
-                              height: screenHeight * .1,
-                              width: (MediaQuery.of(context).orientation ==
-                                      Orientation.portrait)
-                                  ? MediaQuery.of(context).size.width * 0.7
-                                  : 175,
+                              margin: EdgeInsets.only(top: 100, bottom: 10),
+                              height: 60,
+                              width: screenWidth * .7,
                               child: TextFormField(
                                 controller: emailController,
                                 validator: (String val) {
@@ -86,7 +67,8 @@ class _Login extends State<Login> {
                                 },
                                 keyboardType: TextInputType.emailAddress,
                                 decoration: InputDecoration(
-                                  prefixIcon: Icon(Icons.email),
+                                  prefixIcon: Icon(Icons.email,
+                                      color: Theme.of(context).primaryColor),
                                   labelText: "Email",
                                   labelStyle: TextStyle(fontSize: 12),
                                   focusedBorder: OutlineInputBorder(
@@ -110,13 +92,8 @@ class _Login extends State<Login> {
                               ),
                             ),
                             Container(
-                              alignment: Alignment.center,
-                              padding: EdgeInsets.all(10),
-                              height: screenHeight * .1,
-                              width: (MediaQuery.of(context).orientation ==
-                                      Orientation.portrait)
-                                  ? MediaQuery.of(context).size.width * 0.7
-                                  : 175,
+                              height: 60,
+                              width: screenWidth * .7,
                               child: TextFormField(
                                 controller: passwordControler,
                                 validator: (String val) {
@@ -128,7 +105,8 @@ class _Login extends State<Login> {
                                 },
                                 keyboardType: TextInputType.emailAddress,
                                 decoration: InputDecoration(
-                                  prefixIcon: Icon(Icons.lock_outline),
+                                  prefixIcon: Icon(Icons.lock_outline,
+                                      color: Theme.of(context).primaryColor),
                                   labelText: "Password",
                                   labelStyle: TextStyle(fontSize: 12),
                                   focusedBorder: OutlineInputBorder(
@@ -153,12 +131,8 @@ class _Login extends State<Login> {
                             ),
                             Container(
                               margin: EdgeInsets.only(top: 20),
-                              width: (MediaQuery.of(context).orientation ==
-                                      Orientation.portrait)
-                                  ? MediaQuery.of(context).size.width * 0.7 - 10
-                                  : 175,
-                              height: screenHeight * .07,
-                              padding: EdgeInsets.all(10),
+                              width: screenWidth * .7,
+                              height: 60,
                               decoration: BoxDecoration(
                                 color: Theme.of(context).primaryColor,
                                 borderRadius: BorderRadius.all(
@@ -166,10 +140,9 @@ class _Login extends State<Login> {
                                 ),
                               ),
                               child: FlatButton(
-                                padding: EdgeInsets.all(10),
                                 onPressed: () {
                                   if (loginFormKey.currentState.validate()) {
-                                    Navigator.pushNamed(context, "/staffHome");
+                                    Navigator.pushNamed(context, "/home");
                                   }
                                 },
                                 child: Text(
@@ -206,8 +179,7 @@ class _Login extends State<Login> {
                               alignment: Alignment.center,
                               child: GestureDetector(
                                 onTap: () {
-                                  Navigator.pushNamed(
-                                      context, "/forgotPassword");
+                                  Navigator.pushNamed(context, "/forgotPassword");
                                 },
                                 child: Text("Forgot Password"),
                               ),

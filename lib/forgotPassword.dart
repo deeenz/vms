@@ -85,7 +85,7 @@ class _ForgotPassword extends State<ForgotPassword> {
                                 },
                                 keyboardType: TextInputType.emailAddress,
                                 decoration: InputDecoration(
-                                  prefixIcon: Icon(Icons.email),
+                                  prefixIcon: Icon(Icons.email, color: Theme.of(context).primaryColor),
                                   labelText: "Email",
                                   labelStyle: TextStyle(fontSize: 12),
                                   focusedBorder: OutlineInputBorder(

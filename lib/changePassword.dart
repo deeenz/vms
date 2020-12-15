@@ -52,7 +52,8 @@ class _ChangePassword extends State<ChangePassword> {
                         },
                         keyboardType: TextInputType.emailAddress,
                         decoration: InputDecoration(
-                          prefixIcon: Icon(Icons.email),
+                          prefixIcon: Icon(Icons.email,
+                              color: Theme.of(context).primaryColor),
                           labelText: "New Password",
                           labelStyle: TextStyle(fontSize: 12),
                           focusedBorder: OutlineInputBorder(

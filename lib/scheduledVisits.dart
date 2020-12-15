@@ -4,17 +4,15 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:visitor_management_system/model/visitorModel.dart';
 import 'package:visitor_management_system/newVisit.dart';
-import 'package:flutter_sms/flutter_sms.dart';
-import 'package:visitor_management_system/showVisitorDetails.dart';
 
-class StaffHome extends StatefulWidget {
+class ScheduledVisit extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return _StaffHome();
+    return _ScheduledVisit();
   }
 }
 
-class _StaffHome extends State<StaffHome> {
+class _ScheduledVisit extends State<ScheduledVisit> {
   TextEditingController searchBoxController = TextEditingController();
 
   List<Visitor> visitors = List<Visitor>();
@@ -80,57 +78,23 @@ class _StaffHome extends State<StaffHome> {
             ),
           ),
         ),
-        floatingActionButton: GestureDetector(
-          onTap: () {
-            showModalBottomSheet<void>(
-              context: context,
-              builder: (context) {
-                return NewVisit();
-              },
-            );
-          },
-          child: Container(
-            width: 60,
-            height: 60,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(50)),
-                color: Theme.of(context).primaryColorLight),
-            child: Icon(
-              Icons.add,
-              size: 30,
-            ),
-          ),
-        ),
         body: Column(
           children: [
             Expanded(
-              child: ListView.separated(
+              child: ListView.builder(
                 itemCount: visitors.length,
-                separatorBuilder: (context, index) {
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 30),
-                    child: Container(height: 1, color: Colors.grey[300]),
-                  );
-                },
                 itemBuilder: (context, index) {
-                  return GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) =>
-                              ShowDetails(visitor: visitors[index]),
-                        ),
-                      );
-                    },
-                    child: Container(
-                      height: 100,
-                      child: Row(
-                        children: [
-                          Container(
-                            margin: EdgeInsets.only(left: screenWidth * .05),
-                            width: 60,
-                            height: 60,
+                  return Container(
+                    height: 100,
+                    child: Row(
+                      children: [
+                        Container(
+                          margin: EdgeInsets.only(left: screenWidth * .05),
+                          width: screenWidth * .15,
+                          height: screenWidth * .15,
+                          child: Container(
+                            width: 50,
+                            height: 50,
                             child: Card(
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(40)),
@@ -143,30 +107,32 @@ class _StaffHome extends State<StaffHome> {
                               ),
                             ),
                           ),
-                          Container(
-                            width: screenWidth * .5,
-                            padding: EdgeInsets.symmetric(horizontal: 20),
-                            child: Text(visitors[index].name,
-                                style: TextStyle(fontSize: 15)),
-                          ),
-                          Container(
-                            width: screenWidth * .3,
-                            alignment: Alignment.center,
-                            child: FlatButton(
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10)),
-                              color: Theme.of(context).primaryColor,
-                              child: Text("Invite"),
-                              onPressed: () => showModalBottomSheet<void>(
+                        ),
+                        Container(
+                          width: screenWidth * .5,
+                          padding: EdgeInsets.symmetric(horizontal: 20),
+                          child: Text(visitors[index].name,
+                              style: TextStyle(fontSize: 15)),
+                        ),
+                        Container(
+                          width: screenWidth * .3,
+                          alignment: Alignment.center,
+                          child: FlatButton(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10)),
+                            color: Theme.of(context).primaryColor,
+                            child: Text("Edit"),
+                            onPressed: () {
+                              showModalBottomSheet<void>(
                                 context: context,
                                 builder: (context) {
                                   return NewVisit(visitor: visitors[index]);
                                 },
-                              ),
-                            ),
-                          )
-                        ],
-                      ),
+                              );
+                            },
+                          ),
+                        )
+                      ],
                     ),
                   );
                 },
@@ -238,27 +204,35 @@ class _StaffHome extends State<StaffHome> {
   void fetchData() {
     visitors.add(
       Visitor(
-        company: "Ilor Tech",
-        name: "Nurudeen Tajudeen",
-        email: "taj@gmail.com",
-        phoneNumber: "07033673269",
-      ),
+          company: "Ilor Tech",
+          name: "Nurudeen Tajudeen",
+          email: "taj@gmail.com",
+          phoneNumber: "08037733738",
+          dateOfVisit: "25/5/2018"),
     );
     visitors.add(
       Visitor(
-        company: "Ilor Tech",
-        name: "Mikail Femi",
-        email: "taj@gmail.com",
-        phoneNumber: "08136100678",
-      ),
+          company: "Ilor Tech",
+          name: "Mikail Femi",
+          email: "taj@gmail.com",
+          phoneNumber: "08037733738",
+          dateOfVisit: "25/5/2018"),
     );
     visitors.add(
       Visitor(
-        company: "Ilor Tech",
-        name: "Abdullateef Shittu",
-        email: "taj@gmail.com",
-        phoneNumber: "08037733738",
-      ),
+          company: "Ilor Tech",
+          name: "Abdullateef Shittu",
+          email: "taj@gmail.com",
+          phoneNumber: "08037733738",
+          dateOfVisit: "25/5/2018"),
+    );
+    visitors.add(
+      Visitor(
+          company: "Ilor Tech",
+          name: "Abdurrasaq Muftau",
+          email: "taj@gmail.com",
+          phoneNumber: "08037733738",
+          dateOfVisit: "25/5/2018"),
     );
     _duplicateVisitors.addAll(visitors);
     // TODO fetch data from api and populate visitors
